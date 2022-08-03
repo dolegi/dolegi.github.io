@@ -1,0 +1,107 @@
+
+x8d.org {
+    encode gzip
+    log {
+      output file /var/log/caddy.log
+      format single_field common_log
+    }
+    root * /var/www/site
+    file_server
+}
+
+fonts.x8d.org {
+    encode gzip
+    log {
+      output file /var/log/fonts.log
+      format single_field common_log
+    }
+    root * /var/www/fonts
+    file_server
+}
+
+interest.x8d.org {
+    encode gzip
+    log {
+      output file /var/log/interest.log
+      format single_field common_log
+    }
+    root * /var/www/interest
+    file_server
+}
+
+files.x8d.org {
+    encode gzip
+    log {
+      output file /var/log/files.log
+      format single_field common_log
+    }
+    root * /var/www/files
+    file_server
+}
+
+zalgo.x8d.org {
+    encode gzip
+    log {
+      output file /var/log/zalgo.log
+      format single_field common_log
+    }
+    root * /var/www/zalgo
+    file_server
+}
+
+ascii.x8d.org {
+    encode gzip
+    log {
+      output file /var/log/ascii.log
+      format single_field common_log
+    }
+    root * /var/www/ascii
+    file_server
+}
+
+sodslaw.x8d.org {
+    encode gzip
+    log {
+      output file /var/log/sodslaw.log
+      format single_field common_log
+    }
+    root * /var/www/sodslaw
+    file_server
+}
+
+fonts.dolegi.com {
+    encode gzip
+    root * /var/www/fonts
+    file_server
+}
+
+interest.dolegi.com {
+    encode gzip
+    root * /var/www/interest
+    file_server
+}
+
+files.dolegi.com {
+    encode gzip
+    root * /var/www/files
+    file_server
+}
+
+zalgo.dolegi.com {
+    encode gzip
+    root * /var/www/zalgo
+    file_server
+}
+
+ascii.dolegi.com {
+    encode gzip
+    root * /var/www/ascii
+    file_server
+}
+
+:8080 {
+  encode gzip
+  root * /var/www/goaccess
+  file_server
+}
+

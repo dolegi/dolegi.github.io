@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Font Viewer</title>
+    <link href="./index.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/icon" href="./favicon.ico?v2=true"/>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Font Viewer</h1>
+        <div class="url-input">
+          <input placeholder="URL to font" type="text">
+        </div>
+        <div class="file-reader-container">
+          <div class="file-reader-wrapper">
+            <input id="file" name="file" class="file-reader" type="file">
+            <label for="file" class="file-label">Drag files here<br /> .otf, .woff, .ttf</label>
+            <button class="mobile-button">Upload Files</button>
+          </div>
+        </div>
+      </header>
+      <aside class="aside">
+        <img>
+        <ul class="fonts">
+          <li class="font">FontAwesome</li>
+          <li class="font">Hack</li>
+        </ul>
+        <p class="give-credit">
+        Built using <a href="https://opentype.js.org/" target="_blank">opentype.js</a>.
+        </p>
+      </aside>
+      <article class="main">
+        <div class="details">
+          <div class="char"></div>
+          <div>Unicode <span class="unicode"></span></div>
+          <div>Decimal <span class="decimal"></span></div>
+          <div>HTML <span class="html"></span></div>
+        </div>
+        <div class="glyphs"></div>
+      </article>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/opentype.js@latest/dist/opentype.min.js"></script>
+  <script type="text/javascript" src="./index.js" ></script>
+  </body>
+</html>

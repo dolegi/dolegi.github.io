@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/icon" href="./favicon.ico?v2=true"/>
+    <title>Interest Forecast</title>
+
+    <link href="./index.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="header-container">
+      <h1 class="header">Interest Forecast</h1>
+      <div class="settings">
+        <select class="currency-selector" onchange="changeCurrency()">
+          <option value="$">$</option>
+          <option value="€">€</option>
+          <option value="£">£</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="body-container">
+      <h2 class="sub-header">Compound Interest Calculator</h2>
+
+      <div class="row main-row">
+        <div class="column main-column form-column">
+          <div class="card form">
+            <h3 class="title">Inputs</h3>
+            <div class="fields">
+              <div class="field">
+                <label class="field-label">Initial amount</label>
+                <div class="field-currency-input"><span class="currency-symbol">$</span><input class="field-input field-text-input" type="number" name="principal" value=1000 onkeyup="calc()"></div>
+              </div>
+              <div class="field">
+                <label class="field-label">Annual interest rate</label>
+                <input class="field-input field-text-input" type="number" name="rate" value=4 onkeyup="calc()">
+              </div>
+              <div class="field">
+                <label class="field-label">Years</label>
+                <input class="field-input field-text-input" name="years" type="number" value=5 max="500" onkeyup="calc()">
+              </div>
+              <div class="field">
+                <label class="field-label">Monthly deposits</label>
+                <div class="field-currency-input"><span class="currency-symbol">$</span><input class="field-input field-text-input" type="number" name="monthlySum" value=50 onkeyup="calc()"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column main-column top-details">
+          <div class="row top-details-row">
+            <div class="column top-details-column">
+              <div class="card total-return">
+                <h3 class="title">Total Return</h3>
+                <div class="return text-centered">
+                  <span class="currency-symbol">$</span><span class="answer"></span>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <div class="interest-percent">
+                      <div class="percent-value"><span class="answer"></span>%</div>
+                      <div class="percent-text">Interest</div>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="deposits-percent">
+                      <div class="percent-value"><span class="answer"></span>%</div>
+                      <div class="percent-text">Deposits</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column top-details-column">
+              <div class="card compound-nominal">
+                <h3 class="title">Compound vs Nominal</h3>
+                <div id="compound-nominal-graph"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row top-details-row">
+            <div class="column top-details-column">
+              <div class="card">
+                <h3 class="title">Interest and desposits</h3>
+                <div id="interest-deposits-graph"></div>
+              </div>
+            </div>
+            <div class="column top-details-column">
+              <div class="card what-is">
+                <h3 class="title">What is Compound Interest?</h3>
+                <p>Compound interest is the build up of interest over time. It is the interest on interest and is the result of reinvesting any gains so that interest on the next period is earned on the principal and the existing interest.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card main-graph-card">
+        <div class="title">Total Return Chart</div>
+        <div id="main-graph"></div>
+      </div>
+
+      <div class="row main-graph-helper-row">
+        <div class="column main-graph-helper-column">
+          <div class="card">
+            <div class="color-circle"></div>
+            <h3 class="title">S&P500 Historical</h3>
+            <div class="content">
+              Historical S&P500 annual accumulated interest rates including reinvested dividends 1928-2017
+            </div>
+            <div style="height: 35px;"></div>
+            <div class="on-off">
+              <label class="switch">
+                <input type="checkbox" class="s-and-p" checked onchange="toggleSAndP(this)">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="column main-graph-helper-column">
+          <div class="card">
+            <div class="color-circle"></div>
+            <h3 class="title">No Interest</h3>
+            <div class="content">
+              Deposits only, calculated with zero interest
+            </div>
+            <div style="height: 35px;"></div>
+            <div class="on-off">
+              <label class="switch">
+                <input type="checkbox" class="no-interest" checked onchange="toggleNoInterest(this)">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="column main-graph-helper-column">
+          <div class="card">
+            <div class="color-circle"></div>
+            <h3 class="title">Custom Interest</h3>
+            <div class="content">
+              <input class="custom-interest" type="number" name="rate" value=3 onkeyup="calc()">
+            </div>
+            <div style="height: 35px;"></div>
+            <div class="on-off">
+              <label class="switch">
+                <input type="checkbox" class="custom" checked onchange="toggleCustomInterest(this)">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card table-card">
+        <h3 class="title">Table Breakdown</h3>
+        <div class="table">
+          <div class="row">
+            <div class="cell">Year</div>
+            <div class="cell">Deposits</div>
+            <div class="cell">Interest</div>
+            <div class="cell">Total</div>
+          </div>
+          <div class="table-body">
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="tiles">
+          <div class="row">
+              <a class="tile card" href="https://en.wikipedia.org/wiki/Compound_interest" target="_blank">
+                <img src="./assets/icons8-general-ledger-64.png">
+                <p>More details on compound interest</p>
+              </a>
+              <a class="tile card" href="https://www.marketwatch.com/story/john-bogles-million-dollar-advice-2013-07-10" target="_blank">
+                <img src="./assets/icons8-receipt-dollar-64.png">
+                <p>John Bogle's million-dollar advice</p>
+              </a>
+          </div>
+          <div class="row">
+              <a class="tile card" href="https://www.marketwatch.com/story/this-warren-buffett-rule-can-work-wonders-on-your-portfolio-2016-04-26" target="_blank">
+                <img src="./assets/icons8-money-bag-won-64.png">
+                <p>Warren Buffet on compound interest</p>
+              </a>
+              <a class="tile card" href="https://www.mrmoneymustache.com/2012/01/13/the-shockingly-simple-math-behind-early-retirement" target="_blank">
+                <img src="./assets/icons8-calculator-64.png">
+                <p>The Shockingly Simple Math Behind Early Retirement</p>
+              </a>
+          </div>
+          <div class="row">
+              <a class="tile card" href="https://www.investopedia.com/articles/investing/020614/learn-simple-and-compound-interest.asp" target="_blank">
+                <img src="./assets/icons8-front-view-64.png">
+                <p>Simple interest vs Compound interest</p>
+              </a>
+              <a class="tile card" href="https://www.fool.co.uk/investing-basics/the-miracle-of-compound-returns" target="_blank">
+                <img src="./assets/icons8-hospital-folder-64.png">
+                <p>The miracle of compound returns</p>
+              </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card how-card">
+        <h2>How does this work?</h2>
+        <p>
+        The initial amount also know as the principal is increased by the annual interest rate calculated at an interval of every month. On top of this the monthly investments are also compounded at the same interval of every month. The monthly deposits are calculated at the end of each interval, this is the same as depositing the money at the end of each month. 
+        </p>
+        <h4>When is interest compounded?</h4>
+        <p>
+        It is calculated at the end of each month. Currently this cannot be changed.
+        </p>
+        <h4>How do the formulas work?</h4>
+        <p>
+        The future principal value is calculated using this formula
+
+        <img class="principal-formula" src="./assets/principal-formula.png">
+
+        <ul>
+          <li>P' - The future value of P</li>
+          <li>P - The exising principal</li>
+          <li>r - The annual interest rate</li>
+          <li>n - The compounding frequency (e.g 12 to compound monthly)</li>
+          <li>t - The number of years</li>
+        </ul>
+
+        The monthly deposits value is calculated using this formula
+        <img class="monthly-formula" src="./assets/monthly-deposits-formula.png">
+        <ul>
+          <li>C' - The future value of C</li>
+          <li>C - The monthly deposit</li>
+          <li>i - The monthly interest rate (annual rate / 12)</li>
+          <li>n - The number of years * the number of months</li>
+        </ul>
+        </p>
+
+        <h4>What are some realistic values?</h4>
+        <p>
+        The interest rate varies on where you are and what investments are available to you as well as how much risk you are will to take on.
+        The estimated average annual return for the S&P 500 since it's creation in 1928 up until 2017 has been approximately 11%.
+        The average savings account in most countries is between 0%-5%.
+        Warren Buffet's company Berkshire Hathaway has a compounded annual return of about 20.8% since 1965.
+        </p>
+
+      </div>
+    </div>
+    <div class="footer">
+      <a href="./privacy-policy.html">Terms of Service</a> - 
+      <a href="./privacy-policy.html#privacy">Privacy Policy</a> - 
+      <a href="https://icons8.com">Icon pack by Icons8</a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script type="text/javascript" src="./index.js" ></script>
+  </body>
+</html> 

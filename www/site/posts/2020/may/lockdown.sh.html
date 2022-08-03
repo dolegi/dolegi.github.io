@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="x8d" />
+  <meta name="keywords" content="projects, linux, debian, hardening, security" />
+  <meta name="description" content="Simple linux hardening script" />
+  <link rel='icon' type='image/svg+xml' href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20baseProfile%3D%22full%22%20version%3D%221.1%22%20style%3D%22fill%3A%20none%3B%22%20width%3D%22320px%22%20height%3D%22200px%22%3E%3Cpath%20style%3D%22stroke-width%3A%2015px%3B%20stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%20stroke%3A%20rgb%28106%2C%20106%2C%20106%29%3B%20fill%3A%20none%3B%22%20d%3D%22%22%2F%3E%3Cpath%20style%3D%22stroke-width%3A%2015px%3B%20stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%20stroke%3A%20rgb%2874%2C%2074%2C%2074%29%3B%20fill%3A%20none%3B%22%20d%3D%22%22%2F%3E%3Cpath%20style%3D%22stroke-width%3A%2015px%3B%20stroke-linecap%3A%20square%3B%20stroke-linejoin%3A%20round%3B%20stroke%3A%20rgb%2810%2C%2010%2C%2010%29%3B%20fill%3A%20none%3B%22%20d%3D%22M60%2C180%20L60%2C180%20L120%2C120%20M60%2C120%20L60%2C120%20L120%2C180%20M150%2C60%20L150%2C60%20L150%2C180%20L210%2C180%20L210%2C60%20L150%2C60%20L150%2C120%20L210%2C120%20L210%2C60%20L210%2C60%20L210%2C180%20M150%2C60%20L150%2C60%20L150%2C180%20M210%2C120%20L210%2C120%20L210%2C60%20M240%2C180%20L240%2C180%20L240%2C120%20L300%2C120%20L300%2C180%20L240%2C180%20L240%2C120%20L300%2C120%20L300%2C60%20M300%2C120%20L300%2C120%20L240%2C120%20M240%2C180%20L240%2C180%20L300%2C180%20%22%2F%3E%3C%2Fsvg%3E%0A" />
+  <title>x8d – Lockdown.sh</title>
+  <link rel="stylesheet" href="/index.css" />
+</head>
+<body>
+<nav>
+  <ol>
+    <li class="dark"><b>x8d</b></li>
+    <li> - </li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+  </ol>
+</nav>
+<div id="main">
+<header id="title-block-header">
+<h1 class="title">Lockdown.sh</h1>
+<p class="date">23-05-2020</p>
+</header>
+<p>Lockdown.sh is a simple POSIX script created to harden a new linux install. While learning more about linux and server admin, I came across a <a href="https://cisofy.com/lynis/">lynis</a>. Which is an incrediblly neat tool to audit a linux server.</p>
+<p>I started by creating a new debian 10 VPS and running</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a>$ <span class="ex">lynis</span> audit system</span></code></pre></div>
+<p>This performs various checks on the current system and reports warnings and suggestions. The initial hardening index I got was</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">Hardening</span> index : 57 [###########         ]</span></code></pre></div>
+<p>Then after working through the suggestions and applying fixes I managed to increase that to 88.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">Hardening</span> index : 88 [#################   ]</span></code></pre></div>
+<p>As I was doing so I wrote up the changes I was making in this script.</p>
+<p>Now creating a new instance and running this script applies all the changes.</p>
+<p>The full script and repo can be found <a href="https://github.com/x08d/lockdown.sh">here</a></p>
+</div>
+</body>
+</html>
