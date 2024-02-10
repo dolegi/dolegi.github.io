@@ -1,2 +1,2 @@
-rsync -r -e "ssh -p 141" dlg@web:/var/www .
-rsync -r -e "ssh -p 141" dlg@web:/etc/caddy/Caddyfile .
+rsync -r -e "ssh -i ~/.ssh/hertzner_rsa" www/ root@web:/var/www
+rsync -r -e "ssh -i ~/.ssh/hertzner_rsa" Caddyfile root@web:/etc/caddy/Caddyfile

@@ -3,17 +3,14 @@ x8d.org {
     encode gzip
     log {
       output file /var/log/caddy.log
-      format single_field common_log
     }
-    root * /var/www/site
-    file_server
+		respond "Wu tang for the children"
 }
 
 fonts.x8d.org {
     encode gzip
     log {
       output file /var/log/fonts.log
-      format single_field common_log
     }
     root * /var/www/fonts
     file_server
@@ -23,7 +20,6 @@ interest.x8d.org {
     encode gzip
     log {
       output file /var/log/interest.log
-      format single_field common_log
     }
     root * /var/www/interest
     file_server
@@ -33,7 +29,6 @@ files.x8d.org {
     encode gzip
     log {
       output file /var/log/files.log
-      format single_field common_log
     }
     root * /var/www/files
     file_server
@@ -43,7 +38,6 @@ zalgo.x8d.org {
     encode gzip
     log {
       output file /var/log/zalgo.log
-      format single_field common_log
     }
     root * /var/www/zalgo
     file_server
@@ -53,7 +47,6 @@ ascii.x8d.org {
     encode gzip
     log {
       output file /var/log/ascii.log
-      format single_field common_log
     }
     root * /var/www/ascii
     file_server
@@ -63,7 +56,6 @@ sodslaw.x8d.org {
     encode gzip
     log {
       output file /var/log/sodslaw.log
-      format single_field common_log
     }
     root * /var/www/sodslaw
     file_server
