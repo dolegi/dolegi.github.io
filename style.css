@@ -6,19 +6,16 @@ body {
 }
 
 .card {
-  position: absolute;
-  left: 50%;
   text-align: left;
   user-select: none;
 }
 
 .card .inner {
   position: relative;
-  left: -50%;
   padding: 2%;
   padding-right: 7%;
   padding-left: 7%;
-  top: 8em;
+  top: 1em;
   background-color: white;
   width: 100%;
 }
